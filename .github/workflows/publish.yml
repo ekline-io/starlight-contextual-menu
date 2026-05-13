@@ -1,0 +1,38 @@
+name: Publish to npm
+
+on:
+  # Cut a GitHub Release (with a tag like v0.2.1) and this workflow publishes
+  # whatever version is currently in packages/starlight-contextual-menu/package.json.
+  release:
+    types: [published]
+  # Lets you run a publish manually from the Actions tab without cutting a release.
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      # Required to produce an npm provenance statement that links the published
+      # tarball back to this exact commit/run. Costs nothing, free supply-chain
+      # signal for downstream consumers.
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Publish @ekline-io/starlight-contextual-menu
+        working-directory: packages/starlight-contextual-menu
+        run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
