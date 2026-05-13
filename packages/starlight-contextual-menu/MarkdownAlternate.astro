@@ -1,0 +1,51 @@
+---
+/**
+ * Emit `<link rel="alternate" type="text/markdown" href="…">` for the
+ * current Starlight page, but only when the page actually has a `.md`
+ * sibling served by this plugin's markdown route.
+ *
+ * Drop this into your Starlight `Head` override:
+ *
+ *   ---
+ *   import Default from '@astrojs/starlight/components/Head.astro';
+ *   import MarkdownAlternate from
+ *     '@ekline/starlight-contextual-menu/MarkdownAlternate.astro';
+ *   ---
+ *
+ *   <Default />
+ *   <MarkdownAlternate />
+ *
+ * Well-behaved AI crawlers (GPTBot, ClaudeBot, etc.) use the
+ * `<link rel="alternate">` convention to discover non-HTML
+ * representations of a page without needing to guess URL shapes.
+ */
+import { getCollection } from "astro:content";
+
+// `getCollection('docs')` only returns entries that come from real
+// Markdown/MDX files under `src/content/docs/` — virtual entries injected
+// by plugins like `starlight-openapi` don't appear here, which is exactly
+// the filter we want. Their `<link>` would 404 since the markdown route
+// handler only renders entries it finds via the same getCollection call.
+const docs = await getCollection("docs");
+const realIds = new Set(docs.map((d) => d.id));
+
+const entry = Astro.locals.starlightRoute?.entry;
+// Starlight reports the root page's entry id as an empty string; getCollection
+// reports it as 'index'. Normalise so the Set lookup works at the root.
+const entryId = entry?.id || "index";
+const hasMarkdownTwin =
+	entry?.collection === "docs" && realIds.has(entryId);
+
+const pathname = Astro.url.pathname;
+const isHome = pathname === "/" || pathname === "";
+const hasFileExt = /\.[a-z0-9]+$/i.test(pathname);
+
+const mdHref =
+	hasMarkdownTwin && !hasFileExt
+		? isHome
+			? "/index.md"
+			: pathname.replace(/\/$/, "") + ".md"
+		: null;
+---
+
+{mdHref && <link rel="alternate" type="text/markdown" href={mdHref} />}

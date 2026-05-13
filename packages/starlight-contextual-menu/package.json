@@ -1,6 +1,6 @@
 {
   "name": "@ekline/starlight-contextual-menu",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Add a contextual (Copy / View / Open in Claude / ChatGPT) menu to your Starlight documentation. Ekline fork.",
   "license": "MIT",
   "main": "index.js",
@@ -10,6 +10,7 @@
     "index.d.ts",
     "contextual-menu.js",
     "markdown-route.js",
+    "MarkdownAlternate.astro",
     "README.md"
   ],
   "keywords": [
