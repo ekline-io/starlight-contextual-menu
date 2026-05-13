@@ -1,22 +1,36 @@
 {
-  "name": "starlight-contextual-menu",
-  "version": "0.1.5",
-  "description": "Add contextual menu to your Starlight documentation.",
+  "name": "@ekline-io/starlight-contextual-menu",
+  "version": "0.2.0",
+  "description": "Add a contextual (Copy / View / Open in Claude / ChatGPT) menu to your Starlight documentation. Ekline fork.",
   "license": "MIT",
   "main": "index.js",
   "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "contextual-menu.js",
+    "markdown-route.js",
+    "README.md"
+  ],
   "keywords": [
     "astro",
     "starlight",
     "contextual-menu"
   ],
-  "author": "Corsfix",
+  "author": "Ekline (fork of Corsfix)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ekline-io/starlight-contextual-menu.git",
+    "directory": "packages/starlight-contextual-menu"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "type": "module",
   "devDependencies": {
-    "@astrojs/starlight": "^0.35.2"
+    "@astrojs/starlight": "^0.39.0"
   },
   "peerDependencies": {
-    "astro": "^5.0.0",
-    "starlight-markdown": "^0.1.5"
+    "astro": "^5.0.0 || ^6.0.0"
   }
 }
