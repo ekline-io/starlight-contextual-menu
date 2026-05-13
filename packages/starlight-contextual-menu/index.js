@@ -26,8 +26,7 @@ function markdownRoutesIntegration() {
       "astro:config:setup": async ({ injectRoute }) => {
         injectRoute({
           pattern: "/[...path].md",
-          entrypoint:
-            "@ekline-io/starlight-contextual-menu/markdown-route.js",
+          entrypoint: "@ekline/starlight-contextual-menu/markdown-route.js",
         });
       },
     },

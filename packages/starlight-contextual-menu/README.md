@@ -1,4 +1,4 @@
-# @ekline-io/starlight-contextual-menu
+# @ekline/starlight-contextual-menu
 
 > **Ekline fork of [`starlight-contextual-menu`](https://github.com/corsfix/starlight-contextual-menu)** by Reynaldi Chernando (Corsfix).
 > Differences from upstream are listed under [What's different in this fork](#whats-different-in-this-fork).
@@ -8,7 +8,7 @@ Adds a per-page contextual menu (Copy / View as Markdown / Open in Claude / Open
 ## Usage
 
 ```bash
-npm i @ekline-io/starlight-contextual-menu
+npm i @ekline/starlight-contextual-menu
 ```
 
 In your `astro.config.mjs`:
@@ -16,7 +16,7 @@ In your `astro.config.mjs`:
 ```js
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
-import starlightContextualMenu from "@ekline-io/starlight-contextual-menu";
+import starlightContextualMenu from "@ekline/starlight-contextual-menu";
 
 export default defineConfig({
   integrations: [

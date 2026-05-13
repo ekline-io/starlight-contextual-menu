@@ -1,5 +1,5 @@
 {
-  "name": "@ekline-io/starlight-contextual-menu",
+  "name": "@ekline/starlight-contextual-menu",
   "version": "0.2.0",
   "description": "Add a contextual (Copy / View / Open in Claude / ChatGPT) menu to your Starlight documentation. Ekline fork.",
   "license": "MIT",

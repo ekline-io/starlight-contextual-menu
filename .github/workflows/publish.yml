@@ -31,7 +31,7 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
-      - name: Publish @ekline-io/starlight-contextual-menu
+      - name: Publish @ekline/starlight-contextual-menu
         working-directory: packages/starlight-contextual-menu
         run: npm publish --provenance --access public
         env:
